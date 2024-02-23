@@ -3,8 +3,9 @@
 ############################
 
 # Chemins d'installation
-DIR_MGW = C:/MinGW/
-DIR_GTK = C:/LibC/GTK+
+DIR_MGW = C:/msys64/mingw32
+DIR_GTK = C:/msys64/mingw32
+DIR_STD = C:/msys64/mingw32/i686-w64-mingw32
 
 # Répertoires pour trouver les fichiers .h de la bibliothèque
 INCLUDES =	-I$(DIR_GTK)/include/gtk-2.0 \
@@ -12,15 +13,21 @@ INCLUDES =	-I$(DIR_GTK)/include/gtk-2.0 \
 			-I$(DIR_GTK)/lib/glib-2.0/include \
 			-I$(DIR_GTK)/include/cairo \
 			-I$(DIR_GTK)/include/pango-1.0 \
+			-I$(DIR_GTK)/include/harfbuzz \
+			-I$(DIR_GTK)/include/fribidi \
 			-I$(DIR_GTK)/lib/gtk-2.0/include \
 			-I$(DIR_GTK)/include/gdk-pixbuf-2.0 \
+			-I$(DIR_GTK)/include/libpng16 \
+			-I$(DIR_GTK)/include/webp \
 			-I$(DIR_GTK)/include \
 			-I$(DIR_GTK)/include/freetype2 \
+			-I$(DIR_GTK)/include/pixman-1 \
 			-I$(DIR_GTK)/include/libpng14 \
 			-I$(DIR_GTK)/include/atk-1.0
 	
 # Répertoires pour trouver les fichiers .lib de la bibliothèque
 LIBS =	-L$(DIR_GTK)/lib \
+		-L$(DIR_STD)/lib \
 		-lglib-2.0 \
 		-lgio-2.0 \
 		-lcairo \
@@ -30,7 +37,13 @@ LIBS =	-L$(DIR_GTK)/lib \
 		-lgthread-2.0 \
 		-lgtk-win32-2.0 \
 		-lgdi32 \
+		-limm32 \
+		-lshell32 \
+		-lole32 \
+		-luuid \
 		-lpango-1.0 \
+		-lharfbuzz \
+		-lmsimg32 \
 		-lpangocairo-1.0 \
 		-lpangowin32-1.0 \
 		-lintl \
@@ -43,12 +56,12 @@ LIBS =	-L$(DIR_GTK)/lib \
 
 # Compilateur, options de compilation et options de construction
 CC=gcc
-CFLAGS=-g -mwindows -c -Wall -mms-bitfields
-LDFLAGS=-mwindows -Wall -mms-bitfields
+CFLAGS=-g -mwindows -c -Wall -mms-bitfields -DLIBDEFLATE_DLL -Wno-deprecated-declarations
+LDFLAGS=-mwindows -Wall -mms-bitfields -DLIBDEFLATE_DLL -Wno-deprecated-declarations
 
 # Noms de l'exécutable et des fichiers sources
-EXEC=TemplateGTK.exe
-SRC=main.c poly.c audio.c
+EXEC=Polynomial_plotter.exe
+SRC=main.c poly.c
 
 # Noms des fichiers objets (fichiers sources avec l'extension .c remplacée par .o)
 OBJ=$(SRC:.c=.o)

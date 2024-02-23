@@ -1,6 +1,6 @@
 /********************************************
  *			 APPLICATION DE TEST			*
- *		    	F.SIMON 2016	    		*
+ *		  F.SIMON 2016 - v1.01 2024	   		*
  ********************************************
 */
     
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 	/* 	Cette fonction fournit le fichier XML à l'objet pConstInterface,
 	 *	puis l'objet analyse le fichier afin de créer l'ensemble des widgets (fenêtres, menus, boutons, etc.) de l'interface graphique
 	 */	
-	gtk_builder_add_from_file(pConstInterface,"TemplateGTK.glade",NULL); 
+	gtk_builder_add_from_file(pConstInterface,"Polynomial_plotter.glade",NULL); 
 
 	/* 	Cette fonction récupère la référence (le pointeur) du widget fenêtre "window1" contenu dans l'objet pConstInterface
 	 *	Remarque : La macro GTK_WIDGET transtype (elle "cast") le GObject renvoyé par la fonction vers un type GtkWidget
